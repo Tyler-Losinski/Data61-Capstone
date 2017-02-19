@@ -1,1 +1,7 @@
 c:\users\tyler\documents\visual studio 2013\Projects\Data61\Data61\bin\Debug\Data61.exe.config
+C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\bin\Debug\Data61.exe.config
+C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\bin\Debug\Data61.exe
+C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\bin\Debug\Data61.pdb
+C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\obj\Debug\Data61.exe
+C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\obj\Debug\Data61.pdb
+C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\obj\Debug\Data61.csprojResolveAssemblyReference.cache
