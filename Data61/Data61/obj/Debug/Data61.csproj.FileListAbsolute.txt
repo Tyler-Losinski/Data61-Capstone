@@ -11,3 +11,5 @@ C:\Users\dotsc_67\Desktop\Repositories\Git\Data61-Capstone\Data61\Data61\bin\Deb
 C:\Users\dotsc_67\Desktop\Repositories\Git\Data61-Capstone\Data61\Data61\bin\Debug\Data61.pdb
 C:\Users\dotsc_67\Desktop\Repositories\Git\Data61-Capstone\Data61\Data61\obj\Debug\Data61.exe
 C:\Users\dotsc_67\Desktop\Repositories\Git\Data61-Capstone\Data61\Data61\obj\Debug\Data61.pdb
+C:\Users\dotsc_67\Desktop\Repositories\Git\Data61-Capstone\Data61\Data61\bin\Debug\Newtonsoft.Json.dll
+C:\Users\dotsc_67\Desktop\Repositories\Git\Data61-Capstone\Data61\Data61\bin\Debug\Newtonsoft.Json.xml
