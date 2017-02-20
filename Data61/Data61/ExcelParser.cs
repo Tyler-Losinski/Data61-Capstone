@@ -14,9 +14,9 @@ namespace Data61.Excel_Parser
     class ExcelParser
     {
 
-        private List<DataTable> _dataTables = new List<DataTable>();
+        private Dictionary<string, DataTable> _dataTables = new Dictionary<string, DataTable>();
 
-        public List<DataTable> DataTables
+        public Dictionary<string,DataTable> DataTables
         {
             get { return _dataTables; }
             set { DataTables = _dataTables; }
@@ -74,8 +74,8 @@ namespace Data61.Excel_Parser
                     DataTable dataTable = new DataTable();
                     dataTable.Locale = CultureInfo.CurrentCulture;
                     adapter.Fill(dataTable);
-                    //Store the csv file as a dataTable and save it to a list of Datatables
-                    DataTables.Add(dataTable);
+                    //Store the csv file as a dataTable and save it to a dictionary of Datatables
+                    DataTables.Add(Path.GetFileName(Files[i]), dataTable);
 
                 }
 

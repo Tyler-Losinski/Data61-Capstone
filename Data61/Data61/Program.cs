@@ -12,22 +12,27 @@ namespace Data61
     {
         static void Main(string[] args)
         {
-            Console.Write("Started!");
+            Console.WriteLine("Started!");
             ExcelParser excelData = new ExcelParser();
 
-            //Prints every csv files's cell with the column header it's in
-            foreach (DataTable dataTable in excelData.DataTables)
+            ////Prints every csv files's cell with the column header it's in
+            //foreach (DataTable dataTable in excelData.DataTables.Values)
+            //{
+            //    foreach (DataRow row in dataTable.Rows)
+            //    {
+            //        foreach (DataColumn column in dataTable.Columns)
+            //        {
+            //            Console.Write("Item: ");
+            //            Console.Write(column.ColumnName);
+            //            Console.Write(" ");
+            //            Console.WriteLine(row[column]);
+            //        }
+            //    }
+            //}
+
+            foreach(string key in excelData.DataTables.Keys)
             {
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    foreach (DataColumn column in dataTable.Columns)
-                    {
-                        Console.Write("Item: ");
-                        Console.Write(column.ColumnName);
-                        Console.Write(" ");
-                        Console.WriteLine(row[column]);
-                    }
-                }
+                Console.WriteLine(key);
             }
 
             //Keep the application from stoping so we can test
