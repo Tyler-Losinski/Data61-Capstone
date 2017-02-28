@@ -1,0 +1,28 @@
+{
+  "sources": [
+    {
+      "name": "NSW",
+      "type": "CSV",
+      "path": "nsw.csv"
+    }
+  ],
+  "targets": [
+    {
+      "name": "VIC",
+      "type": "CSV",
+      "path": "vic.csv"
+    }
+  ],
+  "mappings": [
+    {
+      "source": "NSW.AreaName",
+      "target": "VIC.Area",
+      "operation": "COPY"
+    },
+    {
+      "source": "NSW.AreaCode",
+      "target": "VIC.AreaCode",
+      "operation": "COPY"
+    }
+  ]
+}

@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data61", "Data61\Data61.csproj", "{49FD7AD4-D380-428B-8B71-0266323F90EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data61 REST", "Data61 REST\Data61 REST.csproj", "{8C7608E3-3E0B-4BEC-8A4E-E18051985237}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data61 REST.Tests", "Data61 REST.Tests\Data61 REST.Tests.csproj", "{01CC3B63-194F-459D-AC0A-B5BF9E36AFA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{49FD7AD4-D380-428B-8B71-0266323F90EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49FD7AD4-D380-428B-8B71-0266323F90EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49FD7AD4-D380-428B-8B71-0266323F90EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C7608E3-3E0B-4BEC-8A4E-E18051985237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C7608E3-3E0B-4BEC-8A4E-E18051985237}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C7608E3-3E0B-4BEC-8A4E-E18051985237}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C7608E3-3E0B-4BEC-8A4E-E18051985237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01CC3B63-194F-459D-AC0A-B5BF9E36AFA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01CC3B63-194F-459D-AC0A-B5BF9E36AFA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01CC3B63-194F-459D-AC0A-B5BF9E36AFA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01CC3B63-194F-459D-AC0A-B5BF9E36AFA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
