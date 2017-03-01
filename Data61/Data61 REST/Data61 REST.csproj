@@ -248,6 +248,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dataset.cs" />
+    <Compile Include="Models\Download.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Integration.cs" />
     <Compile Include="Models\Mapping.cs" />

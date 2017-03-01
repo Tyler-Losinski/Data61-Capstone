@@ -11,7 +11,7 @@ namespace Data61_REST.IntegrationLogic
     /// </summary>
     public class DataFile
     {
-        readonly string _baseDirectory = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\ParseThese"));
+        readonly string _baseDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ParseThese"));
 
         public Dataset Info { get; }
         public DataTable Data { get; set; }
@@ -31,7 +31,7 @@ namespace Data61_REST.IntegrationLogic
 
         public void Save()
         {
-            using (var sw = new StreamWriter(FullPath, true))
+            using (var sw = new StreamWriter(FullPath, false))
             {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < Data.Columns.Count; i++)

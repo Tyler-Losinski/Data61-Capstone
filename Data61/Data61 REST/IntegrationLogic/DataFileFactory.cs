@@ -9,7 +9,7 @@ namespace Data61_REST.IntegrationLogic
 {
     public static class DataFileFactory
     {
-        private static readonly string BaseDirectory = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\ParseThese"));
+        private static readonly string BaseDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ParseThese"));
 
         public static DataFile ExtractCsv(Dataset info)
         {

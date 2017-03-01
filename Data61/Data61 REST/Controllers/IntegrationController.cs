@@ -15,11 +15,19 @@ namespace Data61_REST.Controllers
 {
     public class IntegrationController : ApiController
     {
+        [HttpGet]
+        public IHttpActionResult Test()
+        {
+            return Ok("Sup nerds");
+        }
+
+
         [HttpPost]
-        public FileHttpResponseMessage Integrate(Integration instructions)
+        public IHttpActionResult Integrate(Integration instructions)
         {
             // EXTRACT
-            string baseDir = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\ParseThese"));
+            string baseDir = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ParseThese"));
+            string downloadDir = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Downloads"));
             List<DataFile> sourceDataFiles = new List<DataFile>();
             List<DataFile> targetDataFiles = new List<DataFile>();
 
@@ -73,20 +81,25 @@ namespace Data61_REST.Controllers
                 tf.Save();
 
             // Return the target file(s)
-            using (ZipArchive zip = ZipFile.Open("data.zip", ZipArchiveMode.Create))
+            if (File.Exists($@"{downloadDir}\data.zip"))
+                File.Delete($@"{downloadDir}\data.zip");
+            using (ZipArchive zip = ZipFile.Open($@"{downloadDir}\data.zip", ZipArchiveMode.Create))
             {
                 foreach (var tf in targetDataFiles)
                     zip.CreateEntryFromFile(tf.FullPath, tf.Info.Path);
             }
-            FileHttpResponseMessage result = new FileHttpResponseMessage("data.zip", HttpStatusCode.OK);
-            var stream = new FileStream("data.zip", FileMode.Open);
-            result.Content = new StreamContent(stream);
-            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/zip");
-            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-            {
-                FileName = "data.zip"
-            };
-            return result;
+
+            return Ok(new Download() {Zip = @"downloads\data.zip"});
+
+            //FileHttpResponseMessage result = new FileHttpResponseMessage("data.zip", HttpStatusCode.OK);
+            //var stream = new FileStream($@"{baseDir}\data.zip", FileMode.Open);
+            //result.Content = new StreamContent(stream);
+            //result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/zip");
+            //result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            //{
+            //    FileName = "data.zip"
+            //};
+            //return result;
         }
     }
 }

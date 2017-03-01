@@ -1,12 +1,12 @@
 {
-  "source": [
+  "sources": [
     {
       "name": "NSW",
       "type": "CSV",
       "path": "nsw.csv"
     }
   ],
-  "target": [
+  "targets": [
     {
       "name": "VIC",
       "type": "CSV",
