@@ -32,6 +32,22 @@ namespace Data61_REST.Controllers
             return true;
         }
 
+        public bool SetValue(string columnName, int rowNum, DataFile dataFile, int value)
+        {
+            DataTable selected = dataFile.SelectColumns(columnName);
+            try
+            {
+                dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal + 1] = value;
+            }catch(Exception e)
+            {
+                throw e;
+            }
+            dataFile.Save();
+            return false;
+        }
+
+
+
         [HttpPost]
         public IHttpActionResult Integrate(Integration instructions)
         {
@@ -81,6 +97,7 @@ namespace Data61_REST.Controllers
                     ValueExists("AreaName", 3, df);
                     foreach (var m in mappingList)
                         selected.Columns[m.Source.Split('.')[1]].ColumnName = m.Target.Split('.')[1];
+                    SetValue("AreaName", 5, df,90000000);
 
                     //TODO: Support more than just COPY
                     tf.Data.Merge(selected);
