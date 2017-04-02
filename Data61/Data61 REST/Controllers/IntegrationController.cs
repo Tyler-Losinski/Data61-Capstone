@@ -4,9 +4,6 @@ using System.Data;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Web.Http;
 using Data61_REST.IntegrationLogic;
 using Data61_REST.Models;
@@ -21,6 +18,19 @@ namespace Data61_REST.Controllers
             return Ok("Sup nerds");
         }
 
+        public bool ValueExists(string columnName, int rowNum, DataFile sourceDataFile)
+        {
+            DataTable selected = sourceDataFile.SelectColumns(columnName);
+            if(rowNum - 2 > selected.Rows.Count)
+                return false;
+
+            var temp = selected.Rows[rowNum];
+
+            if (temp[0].ToString().Equals(""))
+               return false;
+
+            return true;
+        }
 
         [HttpPost]
         public IHttpActionResult Integrate(Integration instructions)
@@ -68,6 +78,7 @@ namespace Data61_REST.Controllers
                     string[] cols = mappingList.Select(m => m.Source.Split('.')[1]).ToArray();
                     DataTable selected = df.SelectColumns(cols);
 
+                    ValueExists("AreaName", 3, df);
                     foreach (var m in mappingList)
                         selected.Columns[m.Source.Split('.')[1]].ColumnName = m.Target.Split('.')[1];
 
