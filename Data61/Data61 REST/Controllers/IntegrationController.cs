@@ -18,10 +18,17 @@ namespace Data61_REST.Controllers
             return Ok("Sup nerds");
         }
 
+        /// <summary>
+        /// Checks if a value exists
+        /// </summary>
+        /// <param name="columnName"></param>
+        /// <param name="rowNum"></param>
+        /// <param name="sourceDataFile"></param>
+        /// <returns></returns>
         public bool ValueExists(string columnName, int rowNum, DataFile sourceDataFile)
         {
             DataTable selected = sourceDataFile.SelectColumns(columnName);
-            if(rowNum  > selected.Rows.Count)
+            if(rowNum  > selected.Rows.Count)//make sure they are not trying to select a row outside of the datatable
                 return false;
 
             var temp = selected.Rows[rowNum];
@@ -32,20 +39,48 @@ namespace Data61_REST.Controllers
             return true;
         }
 
+        /// <summary>
+        /// Sets a specific cell's value
+        /// </summary>
+        /// <param name="columnName"></param>
+        /// <param name="rowNum"></param>
+        /// <param name="dataFile"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool SetValue(string columnName, int rowNum, DataFile dataFile, int value)
         {
             DataTable selected = dataFile.SelectColumns(columnName);
-            try
-            {
-                dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal + 1] = value;
-            }catch(Exception e)
-            {
-                throw e;
-            }
+
+            if (rowNum > selected.Rows.Count)
+                return false;
+
+            //Sets the specified cell to a new value
+            dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal + 1] = value;
             dataFile.Save();
-            return false;
+
+            return true;
         }
 
+        /// <summary>
+        /// Deletes a value from the specified cell
+        /// </summary>
+        /// <param name="columnName"></param>
+        /// <param name="rowNum"></param>
+        /// <param name="dataFile"></param>
+        /// <returns></returns>
+        public bool DeleteValue(string columnName, int rowNum, DataFile dataFile)
+        {
+            DataTable selected = dataFile.SelectColumns(columnName);
+
+            if (rowNum > selected.Rows.Count)
+                return false;
+
+            //This cell can only be set to the datatype that this datatable
+            dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal + 1] = 0;
+            dataFile.Save();
+
+            return true;
+        }
 
 
         [HttpPost]
@@ -98,6 +133,7 @@ namespace Data61_REST.Controllers
                     foreach (var m in mappingList)
                         selected.Columns[m.Source.Split('.')[1]].ColumnName = m.Target.Split('.')[1];
                     SetValue("AreaName", 5, df,90000000);
+                    DeleteValue("AreaName", 5, df);
 
                     //TODO: Support more than just COPY
                     tf.Data.Merge(selected);
