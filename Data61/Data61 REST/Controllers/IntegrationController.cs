@@ -21,7 +21,7 @@ namespace Data61_REST.Controllers
         public bool ValueExists(string columnName, int rowNum, DataFile sourceDataFile)
         {
             DataTable selected = sourceDataFile.SelectColumns(columnName);
-            if(rowNum - 2 > selected.Rows.Count)
+            if(rowNum  > selected.Rows.Count)
                 return false;
 
             var temp = selected.Rows[rowNum];
