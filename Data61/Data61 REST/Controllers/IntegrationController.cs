@@ -21,9 +21,9 @@ namespace Data61_REST.Controllers
         /// <summary>
         /// Checks if a value exists
         /// </summary>
-        /// <param name="columnName"></param>
-        /// <param name="rowNum"></param>
-        /// <param name="sourceDataFile"></param>
+        /// <param name="columnName">Name of the column in question</param>
+        /// <param name="rowNum">Row number for the specific cell we want</param>
+        /// <param name="sourceDataFile">DataTable to look at</param>
         /// <returns></returns>
         public bool ValueExists(string columnName, int rowNum, DataFile sourceDataFile)
         {
@@ -82,6 +82,41 @@ namespace Data61_REST.Controllers
             return true;
         }
 
+        public bool BasicArithmetic(string columnName, int rowNum, DataFile dataFile, int value, string operation)
+        {
+            DataTable selected = dataFile.SelectColumns(columnName);
+
+            if (rowNum > selected.Rows.Count)
+                return false;
+
+            Decimal currentValue = Convert.ToDecimal(dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal]);
+            try
+            {
+                switch (operation)
+                {
+                    case "ADD":
+                        dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal] = value + currentValue;
+                        break;
+                    case "SUBTRACT":
+                        dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal] = currentValue - value;
+                        break;
+                    case "MULTIPLY":
+                        dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal] = value * currentValue;
+                        break;
+                    case "DIVIDE":
+                        dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal] = currentValue / value;
+                        break;
+                }
+            }catch(Exception e)
+            {
+                throw e;
+            }
+
+            dataFile.Save();
+
+            return true;
+        }
+
 
         [HttpPost]
         public IHttpActionResult Integrate(Integration instructions)
@@ -129,11 +164,9 @@ namespace Data61_REST.Controllers
                     string[] cols = mappingList.Select(m => m.Source.Split('.')[1]).ToArray();
                     DataTable selected = df.SelectColumns(cols);
 
-                    ValueExists("AreaName", 3, df);
                     foreach (var m in mappingList)
                         selected.Columns[m.Source.Split('.')[1]].ColumnName = m.Target.Split('.')[1];
-                    SetValue("AreaName", 5, df,90000000);
-                    DeleteValue("AreaName", 5, df);
+                    BasicArithmetic("AreaCode", 0, tf ,69, "DIVIDE");
 
                     //TODO: Support more than just COPY
                     tf.Data.Merge(selected);
