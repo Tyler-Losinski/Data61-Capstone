@@ -82,14 +82,14 @@ namespace Data61_REST.Controllers
             return true;
         }
 
-        public bool BasicArithmetic(string columnName, int rowNum, DataFile dataFile, int value, string operation)
+        public decimal BasicArithmetic(string columnName, int rowNum, DataFile dataFile, int value, string operation)
         {
             DataTable selected = dataFile.SelectColumns(columnName);
 
             if (rowNum > selected.Rows.Count)
-                return false;
+                return 0;
 
-            Decimal currentValue = Convert.ToDecimal(dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal]);
+            decimal currentValue = Convert.ToDecimal(dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal];
             try
             {
                 switch (operation)
@@ -114,7 +114,7 @@ namespace Data61_REST.Controllers
 
             dataFile.Save();
 
-            return true;
+            return Convert.ToDecimal(dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal]);
         }
 
 
