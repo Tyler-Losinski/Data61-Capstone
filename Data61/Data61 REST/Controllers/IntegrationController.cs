@@ -18,105 +18,6 @@ namespace Data61_REST.Controllers
             return Ok("Sup nerds");
         }
 
-        /// <summary>
-        /// Checks if a value exists
-        /// </summary>
-        /// <param name="columnName">Name of the column in question</param>
-        /// <param name="rowNum">Row number for the specific cell we want</param>
-        /// <param name="sourceDataFile">DataTable to look at</param>
-        /// <returns></returns>
-        public bool ValueExists(string columnName, int rowNum, DataFile sourceDataFile)
-        {
-            DataTable selected = sourceDataFile.SelectColumns(columnName);
-            if(rowNum  > selected.Rows.Count)//make sure they are not trying to select a row outside of the datatable
-                return false;
-
-            var temp = selected.Rows[rowNum];
-
-            if (temp[0].ToString().Equals(""))
-               return false;
-
-            return true;
-        }
-
-        /// <summary>
-        /// Sets a specific cell's value
-        /// </summary>
-        /// <param name="columnName"></param>
-        /// <param name="rowNum"></param>
-        /// <param name="dataFile"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public bool SetValue(string columnName, int rowNum, DataFile dataFile, int value)
-        {
-            DataTable selected = dataFile.SelectColumns(columnName);
-
-            if (rowNum > selected.Rows.Count)
-                return false;
-
-            //Sets the specified cell to a new value
-            dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal + 1] = value;
-            dataFile.Save();
-
-            return true;
-        }
-
-        /// <summary>
-        /// Deletes a value from the specified cell
-        /// </summary>
-        /// <param name="columnName"></param>
-        /// <param name="rowNum"></param>
-        /// <param name="dataFile"></param>
-        /// <returns></returns>
-        public bool DeleteValue(string columnName, int rowNum, DataFile dataFile)
-        {
-            DataTable selected = dataFile.SelectColumns(columnName);
-
-            if (rowNum > selected.Rows.Count)
-                return false;
-
-            //This cell can only be set to the datatype that this datatable
-            dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal + 1] = 0;
-            dataFile.Save();
-
-            return true;
-        }
-
-        public decimal BasicArithmetic(string columnName, int rowNum, DataFile dataFile, int value, string operation)
-        {
-            DataTable selected = dataFile.SelectColumns(columnName);
-
-            if (rowNum > selected.Rows.Count)
-                return 0;
-
-            decimal currentValue = Convert.ToDecimal(dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal];
-            try
-            {
-                switch (operation)
-                {
-                    case "ADD":
-                        dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal] = value + currentValue;
-                        break;
-                    case "SUBTRACT":
-                        dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal] = currentValue - value;
-                        break;
-                    case "MULTIPLY":
-                        dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal] = value * currentValue;
-                        break;
-                    case "DIVIDE":
-                        dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal] = currentValue / value;
-                        break;
-                }
-            }catch(Exception e)
-            {
-                throw e;
-            }
-
-            dataFile.Save();
-
-            return Convert.ToDecimal(dataFile.Data.Rows[rowNum][dataFile.Data.Columns[columnName].Ordinal]);
-        }
-
 
         [HttpPost]
         public IHttpActionResult Integrate(Integration instructions)
@@ -166,7 +67,9 @@ namespace Data61_REST.Controllers
 
                     foreach (var m in mappingList)
                         selected.Columns[m.Source.Split('.')[1]].ColumnName = m.Target.Split('.')[1];
-                    BasicArithmetic("AreaCode", 0, tf ,69, "DIVIDE");
+
+                    Arithmetic operation = new Arithmetic(tf);
+                    operation.SetValue("AreaCode", 0, Convert.ToInt32(operation.Average("AreaCode")));
 
                     //TODO: Support more than just COPY
                     tf.Data.Merge(selected);
