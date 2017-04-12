@@ -4,7 +4,6 @@ C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\bin\Debug\Data
 C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\bin\Debug\Data61.pdb
 C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\obj\Debug\Data61.exe
 C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\obj\Debug\Data61.pdb
-C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\obj\Debug\Data61.csprojResolveAssemblyReference.cache
 C:\Users\dotsc_67\Desktop\Repositories\Git\Data61-Capstone\Data61\Data61\bin\Debug\Data61.exe.config
 C:\Users\dotsc_67\Desktop\Repositories\Git\Data61-Capstone\Data61\Data61\obj\Debug\Data61.csprojResolveAssemblyReference.cache
 C:\Users\dotsc_67\Desktop\Repositories\Git\Data61-Capstone\Data61\Data61\bin\Debug\Data61.exe
@@ -21,3 +20,5 @@ C:\Users\Adam\Documents\GitHub\Data61-Capstone\Data61\Data61\bin\Debug\Newtonsof
 C:\Users\Adam\Documents\GitHub\Data61-Capstone\Data61\Data61\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Adam\Documents\GitHub\Data61-Capstone\Data61\Data61\obj\Debug\Data61.exe
 C:\Users\Adam\Documents\GitHub\Data61-Capstone\Data61\Data61\obj\Debug\Data61.pdb
+C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tyler\Desktop\Repositories\Data61-Capstone\Data61\Data61\bin\Debug\Newtonsoft.Json.xml
