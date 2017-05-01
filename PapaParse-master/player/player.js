@@ -174,12 +174,26 @@ function completeFn()
 		rows = arguments[0].data.length;
 
 	
-	console.log(arguments[0].data[3][3]);
-	var modified = run(arguments[0].data);
+	var modifiedObj = Papa.unparse(run(arguments[0].data));
 
-	console.log(modified[3][3]);
-	// console.log("Finished input (async). Time:", end-start, JSON.stringify(arguments[0].data));
-	// console.log("Rows:", rows, "Stepped:", stepped, "Chunks:", chunks);
-	// console.log(arguments[0].data[0].areacode);
-	// console.log(arguments[0]);
+	download(modifiedObj, 'test.csv','.csv');
+}
+
+// Function to download data to a file
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
 }

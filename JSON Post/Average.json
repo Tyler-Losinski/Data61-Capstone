@@ -1,0 +1,8 @@
+{
+    "mappings":
+        {
+        "COLUMN": 0,
+        "expression": "AVERAGE"
+       }
+    
+}

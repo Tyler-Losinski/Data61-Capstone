@@ -53,6 +53,7 @@ function Average(dataObj, column){
 
     sumColumn = sumColumn / dataObj.length;
 
-    return sumColumn;
+    dataObj[dataObj.length][column] = sumColumn;
+    return dataObj;
 
 }

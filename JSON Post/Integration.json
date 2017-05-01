@@ -1,0 +1,32 @@
+{
+    "mappings":[
+        {
+        "COLUMN": 0,
+        "ROW": 1,
+        "VALUE": 3,
+        "expression": "ADD"
+       },
+       {
+        "COLUMN": 0,
+        "ROW": 1,
+        "VALUE": 84,
+        "expression": "MULTIPLY"
+       },
+       {
+        "COLUMN": 0,
+        "ROW": 1,
+        "VALUE": 84,
+        "expression": "SUBTRACT"
+       },
+       {
+        "COLUMN": 0,
+        "VALUE": 5,
+        "expression": "ADDTOCOLUMN"
+       },
+       {
+        "COLUMN": 0,
+        "expression": "AVERAGE"
+       }
+    ]
+    
+}
