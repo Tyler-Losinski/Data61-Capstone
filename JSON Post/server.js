@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var request = require('request');
+var fs = require('fs');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -8,14 +9,26 @@ app.get('/', function(request, response) {
   
 });
 
-var myJSONObject = { json: { key: 'value' } };
+var myJSONObject = { 
+  COLUMN: 3,
+  ROW: 3,
+  VALUE: 3,
+  expression: "ADD"
+};
+
   request({
-      url: "https://ua1c36to9i.execute-api.ap-southeast-2.amazonaws.com/beta",
+      url: "https://3gzpbgxbk1.execute-api.us-east-1.amazonaws.com/prod/Capstone",
       method: "POST",
       json: true,   // <--Very important!!!
       body: myJSONObject
   }, function (error, response, body){
-      console.log(response);
+      fs.writeFile("/Users/dotsc_67/Desktop/PapaParse-master/player/functions.js", body, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+
+        console.log("The file was saved!");
+    }); 
   });
 
 app.listen(app.get('port'), function() {
