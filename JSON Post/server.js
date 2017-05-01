@@ -17,7 +17,7 @@ var myJSONObject = JSON.parse(fs.readFileSync('Integration.json', 'utf8'));
       json: true,   // <--Very important!!!
       body: myJSONObject
   }, function (error, response, body){
-      fs.writeFile("/Users/dotsc_67/Desktop/Repositories/Git/Data61-Capstone/PapaParse-master/player/functions.js", body, function(err) {
+      fs.writeFile("/Users/Tyler/Desktop/PapaParse-master/player/functions.js", body, function(err) {
         if(err) {
             return console.log(err);
         }
