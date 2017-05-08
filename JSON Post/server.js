@@ -1,3 +1,5 @@
+/* Used for downloading a file from API Gateway. Should be integrated into a webpage in the future */
+
 var express = require('express');
 var app = express();
 var request = require('request');
