@@ -5,6 +5,9 @@ var app = express();
 var request = require('request');
 var fs = require('fs');
 
+// URL to API Gateway goes here!
+var url = "https://zrn9yvy6a8.execute-api.ap-southeast-2.amazonaws.com/Test";
+
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
@@ -14,12 +17,12 @@ app.get('/', function(request, response) {
 var myJSONObject = JSON.parse(fs.readFileSync('Integration.json', 'utf8'));
 
   request({
-      url: "https://3gzpbgxbk1.execute-api.us-east-1.amazonaws.com/prod/Capstone",
+      url: url,
       method: "POST",
       json: true,   // <--Very important!!!
       body: myJSONObject
   }, function (error, response, body){
-      fs.writeFile("/Users/Tyler/Desktop/PapaParse-master/player/functions.js", body, function(err) {
+      fs.writeFile("functions.js", body, function(err) {
         if(err) {
             return console.log(err);
         }
